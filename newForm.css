@@ -1,0 +1,79 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.width-25{
+	margin: 0 10%;
+}
+.header{
+	text-align: center;
+    background-color: #80808075;
+    padding: 2%;
+    font-family: sans-serif;
+    color: black;
+
+}
+::selection{
+	background-color: darkblue;
+	color: white;
+}
+section{
+  padding: 20px;
+   text-align: left;
+   font-family: sans-serif;
+   font-weight: 400;
+}
+
+.section{
+	margin: 2% 0;
+	background-color:#80808033;
+	padding: 50px;
+}
+
+.section > h2{
+	background-color: greenyellow;
+	width: 8rem;
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+}
+.section > h2:hover{
+	position: relative;
+	transform: scale(1.1);
+}
+
+.section input{
+	width: 100%;
+	margin: 10px 0;
+	padding: 8px;
+	outline: none;
+	border: none;
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+
+.section input[type="submit"]{
+	color: red;
+    background-color: yellow;
+    font-size: 1.4rem;
+}
+
+.section input [placeholder="Enter Your Name Here ......."]{
+	opacity: 0.7;
+}
+
+.application{
+	padding-left: 100px;
+	padding: 20px;
+    margin-top: 10px;
+    background-color: #80808033;
+    border-radius: 20px;
+}
+.redline{
+	background-color: red;
+    color: white;
+    padding: 10px;
+    border-bottom: 5px solid orange;
+}

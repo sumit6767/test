@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+   	  <title>Form Application</title>
+   	  <meta charset = "UTF-8">
+        <style>
+           *{
+            margin: 0px;
+            padding: 0px;
+           }
+           body{
+            background-image: url("https://img.freepik.com/free-photo/3d-render-concept-phone-receiver-3d-art-design-illustration_460848-9667.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+           }
+           .logo
+           {
+                margin-top: 4rem;
+           }
+           .header{
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+           }
+           .text{
+           font-size: 1rem;
+    color: orange;
+    font-weight: 900;
+    font-family: sans-serif;
+    margin-left: -50%;
+    text-decoration: underline;
+    position: relative;
+    left: 24%;
+           }
+           .logo img{
+                    height: 8%;
+    position: relative;
+    top: -30px;
+    left: -4px;
+    border: 1px solid yellow;
+    border-radius: 10px;
+           }
+           .form{
+            position: relative;
+    left: -20%;
+    border: 5px solid orange;
+    padding: 10px;
+    width: 50%;
+    background: #d1de207a;
+           }
+           .form ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+           }
+           .form h2{
+            text-align: center;
+    font-family: sans-serif;
+    color: #d3541de0;
+    margin-bottom: 40px;
+           }
+           .form p{
+            text-align: center;
+    margin: 10px;
+           }
+           .form input{
+              width: 100%;
+    /* padding: 3px; */
+    border: none;
+    outline: none;
+    color: red;
+    padding: 4px 3px;
+    font-size: 1rem;
+           }
+           #date , #time{
+            width: 48%;
+           }
+           .form input[type="submit"]{
+            margin-top: 10px;
+    padding: 10px;
+    width: 101%;
+    font-size: 1rem;
+    font-weight: 1000;
+
+           }
+           .form input[type="submit"]:hover{
+              background-color: yellow;
+              transform: scale(1.1);
+           }
+           .form input:hover{
+            outline: none;
+           }
+           .form div{
+            padding: 10px 0;
+    font-family: sans-serif;
+           }
+        </style>
+        <script type="text/javascript" src="./form.js" defer></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+   	</head>
+
+   	<body>
+        <header class="header">
+        <div class="logo">
+        	<p class="text">NAV Tech</p>
+         <img src="https://t4.ftcdn.net/jpg/04/63/63/59/360_F_463635935_IweuYhCqZRtHp3SLguQL8svOVroVXvvZ.jpg" alt="image is not available at the location">
+        </div>
+        <div class="form">
+         <h2>Book a Call</h2>
+         <p style="font-family: cursive;border:2px dashed black;background: lightyellow;">book a call for your representative to your mentor and book your call.</p>
+         <p style="color:red;">---------------------------------------------------------------------------------------------------------------------------------------</p>
+   		<form>
+            <ul>
+               <li>Sumit</li>
+            </ul>
+   			<div><label for="name">Name</label></div>
+   			<input type ="text" name="name" id="name" value="">
+   			<div><label for="email">Email</label></div>
+   			<input type ="email" name="email" id="email">
+   			<div><label for="phone">Phone Number</label></div> 
+   			<input type ="number" name="phone" id="phone">
+   			<div><label for="date">Time for call :</label></div>
+   			<span><input type ="date" name="date" id="date"></span>
+   			<span><input type ="time" name="time" id="time"></span>
+   			<div><input type="submit" id="submit" value="Get a Call"></div>
+   		</form>
+         </div>
+      </header>
+   	</body>
+</html>
