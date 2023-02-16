@@ -44,6 +44,12 @@
     list[4].style.color = "red";
     list[4].style.listStyleType = "none";
     list[4].style.padding= "15px 20px";
+    list[1].style.color = "green";
+    Array.from(list).forEach((node,i)=>{
+        if(i % 2===0){
+            node.style.backgroundColor = "green";
+        }
+    })
   </script>
 </body>
 </html>
