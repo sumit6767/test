@@ -34,9 +34,16 @@
       <li class="list-group-item">Item 2</li>
       <li class="list-group-item">Item 3</li>
       <li class="list-group-item">Item 4</li>
+      <li>Item 5</li>
     </ul>
    </div>
   </div>
-
+  <script>
+    const list = document.querySelectorAll("li");
+    list[4].style.backgroundColor = "yellow";
+    list[4].style.color = "red";
+    list[4].style.listStyleType = "none";
+    list[4].style.padding= "15px 20px";
+  </script>
 </body>
 </html>
