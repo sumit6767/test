@@ -24,50 +24,78 @@
        <div id="main" class="card card-body">
         <h2 class="title">Add Items</h2>
         <form id="addForm" class="form-inline mb-3">
-          <input type="text" class="form-control mr-2" id="item">
+          <input type="text" class="form-control mr-2" id="item" placeholder="enter item here">
+          <input type="text" class="form-control mr-2" id="item" placeholder="enter description here">
           <input type="submit" class="btn btn-dark" value="Submit">
         </form>
         <h2 class="title">Items</h2>
         <ul id="items" class="list-group">
-          <li class="list-group-item">Item 1 <button class="btn btn-danger btn-sm float-right delete">X</button></li>
-          <li class="list-group-item">Item 2 <button class="btn btn-danger btn-sm float-right delete">X</button></li>
-          <li class="list-group-item">Item 3 <button class="btn btn-danger btn-sm float-right delete">X</button></li>
-          <li class="list-group-item">Item 4 <button class="btn btn-danger btn-sm float-right delete">X</button></li>
+          <li class="list-group-item">Item 1 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-secondary btn-sm float-right edit">Edit</button></li>
+          <li class="list-group-item">Item 2 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-secondary btn-sm float-right edit">Edit</button></li>
+          <li class="list-group-item">Item 3 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-secondary btn-sm float-right edit">Edit</button></li>
+          <li class="list-group-item">Item 4 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-secondary btn-sm float-right edit">Edit</button></li>
         </ul>
        </div>
       </div>
 
       <script>
-          const submit = document.querySelectorAll("input")[2];
-          const input =  document.querySelectorAll("input")[1];
+          const submit = document.querySelectorAll("input")[3];
+          const input1 =  document.querySelectorAll("input")[1];
+          const input2 =  document.querySelectorAll("input")[2];
+          console.log(input1)
+          console.log(input2)
+          console.log(submit)
           const items = document.getElementById("items");
           let del1 = document.querySelectorAll(".delete");
           console.log(del1)
             const addElement = (e)=>{
             e.preventDefault();
-            if(!(input.value==="")){
+            
             const addElement = document.createElement("li");
-            addElement.classList.add("list-group-item");
-            addElement.innerHTML="<button class=\"btn btn-danger btn-sm float-right delete\">X</button>"
-            addElement.prepend(document.createTextNode(input.value));
+            addElement.className = "list-group-item";
+            addElement.innerHTML="<button class=\"btn btn-danger btn-sm float-right delete\">X</button><button class=\"btn btn-secondary btn-sm float-right edit\">Edit</button>"
+            addElement.prepend(document.createTextNode(input2.value));
+            addElement.prepend(document.createTextNode(input1.value+" "));
             items.append(addElement);
-            del1 = document.querySelectorAll(".delete");
-            Array.from(del1).forEach((node)=>{node.addEventListener("click",removeElement)});
-            }
+            
           }
 
           const removeElement = (e)=>{
             e.preventDefault();
-            if(window.confirm('Are you sure?') && e.target.classList.contains("delete"))
+            if(e.target.classList.contains("delete")){
+            if(window.confirm('Are you sure?'))
             {
                const del = e.target.parentElement;
                console.log(del)
                del.remove();
             }
-
+        }
           }
+
+          const editElement = (e)=>{
+            e.preventDefault()
+            if(e.target.classList.contains("edit")){
+               let ans = window.prompt('what your answer?');
+               console.log(e.target.parentElement.firstChild)
+               e.target.parentElement.firstChild.textContent = ans+" ";
+        }
+          }
+          const filter = (e)=>{
+            const getItemList = document.querySelectorAll("li");
+            let text = e.target.value.toLowerCase();
+            console.log(text)
+            Array.from(getItemList).forEach((node)=>{
+                 console.log(node.childNodes.length)
+                if(node.childNodes[0].textContent.toLowerCase().indexOf(text) != -1 || (node.childNodes.length === 4 && node.childNodes[1].textContent.toLowerCase().indexOf(text) != -1 )){
+                    node.style.display = "block";
+                }else{
+                    node.style.display = "none";
+                }})
+             }
           submit.addEventListener("click",addElement)
-          Array.from(del1).forEach((node)=>{node.addEventListener("click",removeElement)});
+          items.addEventListener("click",removeElement);
+          items.addEventListener("click",editElement)
+          document.querySelectorAll("input")[0].addEventListener("keyup",filter);
       </script>
 </body>
 </html>
