@@ -81,7 +81,7 @@
                var indexing = userArray.includes(itemText.slice(0,itemText.length-1))? userArray.indexOf(itemText.slice(0,itemText.length-1)) : -1;
                console.log(indexing)
                if(indexing != -1){
-                localStorage.removeItem(localStorage.key(indexing))
+                localStorage.removeItem(localStorage.key(localStorage.length -1-indexing))
                }
                del.remove();
             }
@@ -93,6 +93,18 @@
             if(e.target.classList.contains("edit")){
                let ans = window.prompt('what your answer?');
                console.log(e.target.parentElement.firstChild)
+               
+               const del = e.target.parentElement;
+               const itemText = e.target.parentElement.childNodes[0].textContent;
+               
+               var indexing = userArray.includes(itemText.slice(0,itemText.length-1))? userArray.indexOf(itemText.slice(0,itemText.length-1)) : -1;
+               console.log(indexing)
+               if(indexing != -1){
+                let user = localStorage.getItem(localStorage.key(localStorage.length-1-indexing));
+                console.log(localStorage.key(localStorage.length-1-indexing))
+                const obj = JSON.stringify({itemname:ans,description:JSON.parse(user).decription})
+                localStorage.setItem(localStorage.key(localStorage.length-1-indexing),obj);
+               }
                e.target.parentElement.firstChild.textContent = ans+" ";
         }
           }
