@@ -61,10 +61,11 @@
             addElement.prepend(document.createTextNode(input1.value+" "));
             items.append(addElement);
             const obj = {itemname: input1.value,decription: input2.value};
+            
+            localStorage.setItem(`user${++i}`, JSON.stringify(obj));
+            userArray.push(input1.value)
             input1.value = "";
             input2.value = "";
-            localStorage.setItem(`user${++i}`, JSON.stringify(obj));
-            userArray.push(`user${i}`)
             console.log(JSON.parse(localStorage.getItem(`user${i}`)))
             console.log(userArray)
           }
@@ -75,7 +76,13 @@
             if(window.confirm('Are you sure?'))
             {
                const del = e.target.parentElement;
-               console.log(del)
+               const itemText = e.target.parentElement.childNodes[0].textContent;
+               
+               var indexing = userArray.includes(itemText.slice(0,itemText.length-1))? userArray.indexOf(itemText.slice(0,itemText.length-1)) : -1;
+               console.log(indexing)
+               if(indexing != -1){
+                localStorage.removeItem(localStorage.key(indexing))
+               }
                del.remove();
             }
         }
