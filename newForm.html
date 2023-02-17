@@ -49,6 +49,7 @@
           let i = 0;
           const items = document.getElementById("items");
           let del1 = document.querySelectorAll(".delete");
+          let userArray = []
           console.log(del1)
             const addElement = (e)=>{
             e.preventDefault();
@@ -63,7 +64,9 @@
             input1.value = "";
             input2.value = "";
             localStorage.setItem(`user${++i}`, JSON.stringify(obj));
+            userArray.push(`user${i}`)
             console.log(JSON.parse(localStorage.getItem(`user${i}`)))
+            console.log(userArray)
           }
 
           const removeElement = (e)=>{
