@@ -57,7 +57,8 @@
             addElement.prepend(document.createTextNode(input2.value));
             addElement.prepend(document.createTextNode(input1.value+" "));
             items.append(addElement);
-            
+            localStorage.setItem(input1.value,input2.value)
+            console.log(localStorage.getItem(localStorage.key(0)))
           }
 
           const removeElement = (e)=>{
@@ -92,6 +93,7 @@
                     node.style.display = "none";
                 }})
              }
+
           submit.addEventListener("click",addElement)
           items.addEventListener("click",removeElement);
           items.addEventListener("click",editElement)
