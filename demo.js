@@ -1,1 +1,13 @@
-console.log("this is just as a demo for me")
+var obj = {
+
+    val: 100
+    
+    }
+    
+    function fun(){
+    
+    console.log(this.val)
+    
+    }
+    
+    fun.call(obj)
