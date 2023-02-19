@@ -59,7 +59,7 @@ function editExpense(e){
             e.target.parentElement.parentElement.childNodes[3].textContent = amount;
             let text = e.target.parentElement.parentElement.childNodes[0].textContent+"";
           const obj = JSON.parse(localStorage.getItem(text));
-          obj.descriptiono=amount;
+          obj.categoryno=amount;
           localStorage.setItem(text,JSON.stringify(obj))
         }
         else{
@@ -67,17 +67,21 @@ function editExpense(e){
         }
     }
 }
-console.log(localStorage)
+let c = localStorage.length
 if(localStorage.length >= 1){
-   let c = localStorage.length;
-   while(c-- > 0){
-    i++;
+    for(let obj in localStorage){
+        if(c-- > 0){
    const tr = document.createElement("tr");
+   let key = obj;
+   i = i > +obj ? i:+obj;
+   obj = JSON.parse(localStorage[obj]);
    tr.className = "table-primary"
-   const expense = JSON.parse(localStorage.getItem((i)+""))
-   tr.innerHTML = `<th>${i}</th><th>${expense.amountno}</th><th>${expense.descriptiono}</th><th>${expense.categoryno}</th><th><button class='delete btn btn.dark'>Delete</button></th><th><button class='edit btn btn.dark'>Edit</button></th>`
+   tr.innerHTML = `<th>${+key}</th><th>${obj.amountno}</th><th>${obj.descriptiono}</th><th>${obj.categoryno}</th><th><button class='delete btn btn.dark'>Delete</button></th><th><button class='edit btn btn.dark'>Edit</button></th>`
    table.appendChild(tr)
-   }
+        }else{
+            break;
+        }
+}
 }
 submit.addEventListener("click",addExpense);
 table.addEventListener("click",deleteExpense)
