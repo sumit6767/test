@@ -5,17 +5,28 @@ const submit = document.getElementById("submit")
 const table = document.querySelector(".table")
 let i = 0;
 // function to add expenses in table
-function addExpense(e){
-   e.preventDefault();
+function showdata()
+{
    const tr = document.createElement("tr");
    tr.className = "table-primary"
    tr.innerHTML = `<th>${++i}</th><th>${amount.value}</th><th>${description.value}</th><th>${category.value}</th><th><button class='delete btn btn.dark'>Delete</button></th><th><button class='edit btn btn.dark'>Edit</button></th>`
    table.appendChild(tr)
-   console.log(tr.children[0].textContent)
    localStorage.setItem(i+"",JSON.stringify({amountno:amount.value,descriptiono:description.value,categoryno:category.value}));
    amount.value="";
    description.value="";
    category.value="movie";
+}
+function addExpense(e){
+   e.preventDefault();
+   
+  
+   axios.post("https://crudcrud.com/api/13635851d18f42e4909ebb6271deabd0/expenses",{
+    amount:amount.value,
+    description:description.value,
+    category:category.value,
+   })
+   .then(res=>showdata(res))
+   .catch(err=>console.log(err))   
 }
 
 
@@ -38,7 +49,7 @@ function editExpense(e){
     e.preventDefault();
     if(e.target.classList.contains("edit")){
         let what = prompt("Enter what you will edit : ");
-        if(what==="amount"){
+        if(what.toLowerCase()==="amount"){
           let amount = prompt("enter new amount");
           e.target.parentElement.parentElement.childNodes[1].textContent = amount;
           let text = e.target.parentElement.parentElement.childNodes[0].textContent+"";
@@ -46,7 +57,7 @@ function editExpense(e){
           obj.amountno=amount;
           localStorage.setItem(text,JSON.stringify(obj))
         }
-        else if(what ==="description"){
+        else if(what.toLowerCase() ==="description"){
             let amount = prompt("enter new description");
             e.target.parentElement.parentElement.childNodes[2].textContent = amount;
             let text = e.target.parentElement.parentElement.childNodes[0].textContent+"";
@@ -54,7 +65,7 @@ function editExpense(e){
           obj.descriptiono=amount;
           localStorage.setItem(text,JSON.stringify(obj))
         }
-        else if(what==="category"){
+        else if(what.toLowerCase()==="category"){
             let amount = prompt("enter new description");
             e.target.parentElement.parentElement.childNodes[3].textContent = amount;
             let text = e.target.parentElement.parentElement.childNodes[0].textContent+"";
