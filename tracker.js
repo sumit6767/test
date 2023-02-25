@@ -20,13 +20,13 @@ function addExpense(e){
    e.preventDefault();
    
   
-   axios.post("https://crudcrud.com/api/13635851d18f42e4909ebb6271deabd0/expenses",{
+   axios.post("https://crudcrud.com/api/25a2b968e7cf446fb6ea9431877503d7/expenses",{
     amount:amount.value,
     description:description.value,
     category:category.value,
    })
    .then(res=>showdata(res))
-   .catch(err=>console.log(err))   
+   .catch(err => console.log(err.config))   
 }
 
 
@@ -78,20 +78,37 @@ function editExpense(e){
         }
     }
 }
-let c = localStorage.length
-if(localStorage.length >= 1){
-    for(let obj in localStorage){
-        if(c-- > 0){
-   const tr = document.createElement("tr");
-   let key = obj;
-   i = i > +obj ? i:+obj;
-   obj = JSON.parse(localStorage[obj]);
-   tr.className = "table-primary"
-   tr.innerHTML = `<th>${+key}</th><th>${obj.amountno}</th><th>${obj.descriptiono}</th><th>${obj.categoryno}</th><th><button class='delete btn btn.dark'>Delete</button></th><th><button class='edit btn btn.dark'>Edit</button></th>`
-   table.appendChild(tr)
-        }else{
-            break;
-        }
+// let c = localStorage.length
+// if(localStorage.length >= 1){
+//     for(let obj in localStorage){
+//         if(c-- > 0){
+//    const tr = document.createElement("tr");
+//    let key = obj;
+//    i = i > +obj ? i:+obj;
+//    obj = JSON.parse(localStorage[obj]);
+//    tr.className = "table-primary"
+//    tr.innerHTML = `<th>${+key}</th><th>${obj.amountno}</th><th>${obj.descriptiono}</th><th>${obj.categoryno}</th><th><button class='delete btn btn.dark'>Delete</button></th><th><button class='edit btn btn.dark'>Edit</button></th>`
+//    table.appendChild(tr)
+//         }else{
+//             break;
+//         }
+// }
+// }
+
+axios.get("https://crudcrud.com/api/25a2b968e7cf446fb6ea9431877503d7/expenses")
+.then(res=>showExistingUser(res))
+.catch(error=>{});
+
+
+
+function showExistingUser(res){
+    
+    console.log(res.data)
+    for(let obj of res.data){
+    const tr = document.createElement("tr")
+    tr.className = "table-primary"
+    tr.innerHTML = `<th>${++i}</th><th>${obj.amount}</th><th>${obj.description}</th><th>${obj.category}</th><th><button class='delete btn btn.dark'>Delete</button></th><th><button class='edit btn btn.dark'>Edit</button></th>`
+    table.appendChild(tr);    
 }
 }
 submit.addEventListener("click",addExpense);
