@@ -20,7 +20,7 @@ function addExpense(e){
    e.preventDefault();
    
   
-   axios.post("https://crudcrud.com/api/25a2b968e7cf446fb6ea9431877503d7/expenses",{
+   axios.post("https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses",{
     amount:amount.value,
     description:description.value,
     category:category.value,
@@ -39,6 +39,10 @@ function deleteExpense(e){
     {
         let text = e.target.parentElement.parentElement.children[0].textContent+"";
         localStorage.removeItem(text)
+        const id = response[+text - 1]._id;
+        axios.delete(`https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses/${id}`)
+        .then(res=>console.log(res))
+        .catch(error=>console.log(error))
         e.target.parentElement.parentElement.remove();
     }
 }
@@ -50,27 +54,54 @@ function editExpense(e){
     if(e.target.classList.contains("edit")){
         let what = prompt("Enter what you will edit : ");
         if(what.toLowerCase()==="amount"){
-          let amount = prompt("enter new amount");
-          e.target.parentElement.parentElement.childNodes[1].textContent = amount;
+          let amountNo = prompt("enter new amount");
+          e.target.parentElement.parentElement.childNodes[1].textContent = amountNo;
           let text = e.target.parentElement.parentElement.childNodes[0].textContent+"";
-          const obj = JSON.parse(localStorage.getItem(text));
-          obj.amountno=amount;
+        //   const obj = JSON.parse(localStorage.getItem(text));
+        //   obj.amountno=amount;
+        const id = response[+text - 1];
+        const obj = {
+            amount : amountNo + "",
+            description: (id.description)+"",
+            category: (id.category)+"",
+        }
+        axios.put(`https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses/${id._id}`,obj)
+        .then(res=>console.log(res))
+        .catch(error=>console.log(error))
           localStorage.setItem(text,JSON.stringify(obj))
         }
         else if(what.toLowerCase() ==="description"){
-            let amount = prompt("enter new description");
-            e.target.parentElement.parentElement.childNodes[2].textContent = amount;
+            let amountNo = prompt("enter new description");
+            e.target.parentElement.parentElement.childNodes[2].textContent = amountNo;
             let text = e.target.parentElement.parentElement.childNodes[0].textContent+"";
-          const obj = JSON.parse(localStorage.getItem(text));
-          obj.descriptiono=amount;
+        //   const obj = JSON.parse(localStorage.getItem(text));
+        //   obj.descriptiono=amount;
+        const id = response[+text - 1];
+        const obj = {
+            amount : (id.amount)+"",
+            description: amountNo+"",
+            category: (id.category)+"",
+        }
+        axios.put(`https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses/${id._id}`,obj)
+        .then(res=>console.log(res))
+        .catch(error=>console.log(error))
           localStorage.setItem(text,JSON.stringify(obj))
         }
         else if(what.toLowerCase()==="category"){
-            let amount = prompt("enter new description");
-            e.target.parentElement.parentElement.childNodes[3].textContent = amount;
+            let amountNo = prompt("enter new description");
+            e.target.parentElement.parentElement.childNodes[3].textContent = amountNo;
             let text = e.target.parentElement.parentElement.childNodes[0].textContent+"";
-          const obj = JSON.parse(localStorage.getItem(text));
-          obj.categoryno=amount;
+        //   const obj = JSON.parse(localStorage.getItem(text));
+        //   obj.categoryno=amount;
+        const id = response[+text - 1];
+        const obj = {
+            amount : (id.amount)+"",
+            description: (id.description)+"",
+            category: amountNo+"",
+        }
+        axios.put(`https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses/${id._id}`,obj)
+        .then(res=>console.log(res))
+        .catch(error=>console.log(error))
           localStorage.setItem(text,JSON.stringify(obj))
         }
         else{
@@ -95,15 +126,17 @@ function editExpense(e){
 // }
 // }
 
-axios.get("https://crudcrud.com/api/25a2b968e7cf446fb6ea9431877503d7/expenses")
+// this.addEventListener("DOMContentLoaded",(e)=>{
+axios.get("https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses")
 .then(res=>showExistingUser(res))
-.catch(error=>{});
+.catch(error=>{})
+// })
 
 
-
+let response = null;
 function showExistingUser(res){
     
-    console.log(res.data)
+    response = res.data;
     for(let obj of res.data){
     const tr = document.createElement("tr")
     tr.className = "table-primary"
