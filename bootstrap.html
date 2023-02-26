@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous" defer></script>
+    <title>Bootstrap</title>
+    <!-- <link rel="icon" href="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" type="" sizes=""> -->
+    <link type="image/png" sizes="96x96" rel="icon" href="/icons8-appointment-scheduling-96.png">
+    <style media="screen">
+       
+        body{
+            background-image: url("https://img.freepik.com/free-vector/hotel-booking-app-background_23-2148144977.jpg?w=740&t=st=1677408684~exp=1677409284~hmac=aaedf23b971310a4a0c5ff77a7f0b04486b1d0ae0369fd8879491dbc681a5c34");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .pad{
+            margin-top: 2%;
+        }
+        .text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            ;
+        }
+    </style>
+</head>
+<body class="bg-transparent">
+    <div class="container-lg d-lg-block d-md-none">
+         <div class="header">
+            <div class="row p-2 bg-dark bg-opacity-100 rounded-3">
+                <div class="col-auto d-flex justify-content-center align-items-center text-danger">
+                    <img src="https://img.icons8.com/cotton/64/null/appointment-time--v2.png"/>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center text-white flex-wrap fw-bolder fs-5">
+                    Booking Appointment App
+                </div>
+            </div>
+         </div>
+    </div>
+    <div class="container-sm pad fw-bolder">
+        <div class="rows">
+            <div class="col-lg-6 col">
+                <div class="card">
+                    <img src="https://www.shutterstock.com/image-vector/vector-illustration-man-receives-certificate-600w-2149908825.jpg" class= "card-img" height="700" alt="image is not available now">
+                    <div class="card-body card-img-overlay bg-primary bg-opacity-10">
+                        <h2 class="card-title text-center mb-2 fw-bolder text-bg-danger bg-opacity-100 border-dark p-2 border-3 rounded-2 fade show border">Book Appointment</h2>
+                        <div class="card-text">
+                            <form class="" novalidate method="post">
+                                <div class="form-floating pad">
+                                    
+                                    <input type="email" class="form-control form-control bg-info bg-opacity-25" id="email" placeholder="Enter your gmail ID" value="" required> 
+                                    <label  class="form-label" for="email">Email-ID</label>
+                                    <div class="valid-feedback">Correct Email Id</div>
+                                    <div class="invalid-feedback">Incorrect Email Id</div>
+                                </div>
+                                
+                                <div class="form-floating pad">
+                                    
+                                    <input type="text" id="name" class="form-control bg-info bg-opacity-25" placeholder="enter name here" required>
+                                    <label  class="form-label" for="name">Name</label>
+                                    <div class="valid-feedback">Correct Name</div>
+                                    <div class="invalid-feedback">Incorrect Name</div>
+                                </div>
+                                <div class="form-floating pad bg-info bg-opacity-25">
+                                    
+                                <input type="number" class="form-control bg-info bg-opacity-25" id="age" placeholder="Enter">
+                                <label  class="form-label" for="age">Age</label>
+                                </div>
+                                
+                                <div class="form-floating pad">
+                                <select name="location" id="area" class="form-select bg-info bg-opacity-25" required>
+                                    <option value="">kalyan</option>
+                                    <option value="">kalyan</option>
+                                    <option value="">kalyan</option>
+                                    <option value="">kalyan</option>
+                                    <option value="">kalyan</option>
+                                    <option value="">kalyan</option>
+                                    <option value="">kalyan</option>
+                                    <option value="">kalyan</option>
+                                    <option value="">kalyan</option>
+                                    <option value="">kalyan</option>
+                                </select>
+                                <label for="area" class="form-label">Choose Area</label>
+                                </div>
+                                <div class="input-group pad">
+                                    <button class="btn btn-danger">Date</button>
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control bg-info bg-opacity-25" id="date" placeholder ="Select Date" required>
+                                        <label for="date" class="form-label">Date</label>
+                                    </div>
+                                    <button class="btn btn-danger">Time</button>
+                                    <div class="form-floating">
+                                        <input type="time" class="form-control bg-info bg-opacity-25" id="time" required>
+                                        <label for="time" class="form-label">Time</label>
+                                    </div>
+                                </div>
+                                <div class="form-check pad form-switch form-check-inline">
+                                    <input type="checkbox" name="" id="yes" class="form-check-input" value="YES">
+                                    <label for="yes" class="form-label">Yes</label>
+                                </div>
+                                <div class="form-check pad form-switch">
+                                    <input type="checkbox" name="" id="no" class="form-check-input">
+                                    <label for="no" class="form-label">No</label>
+                                </div>
+                                <!-- <label for="amount" class="form-label">Amount</label> -->
+                                <!-- <div class="input-group">
+                                    <div class="input-group-text">$</div>
+                                    <input type="number" name="" id="amount" class="form-control">
+                                    <div class="input-group-text">.00</div>
+                                    <input type="number" name="" id="amount" class="form-control">
+                                    <button class="btn btn-primary">+</button>
+                                </div> -->
+                                
+                                <div class="alert alert-primary pad fade show alert-dismissible" role="alert">
+                                    <div class="row rows-col-2">
+                                        <div class="col"><button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal">Submit</button></div>
+                                        <div class="col">
+                                            <button class="btn btn-primary btn-close" data-bs-dismiss="alert"></button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                    <div class="modal fade" role="modal" id="modal">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-lg-down">
+                                            <div class="modal-content">
+                                                <h2 class="modal-header">Are you sure for submit data ?<button class="btn btn-primary btn-close" data-bs-target="#modal" data-bs-dismiss="modal"></button></h2>
+                                                <span class="modal-body">Hi I am sumit Vishwakama</span>
+                                                <div class="modal-footer"><button class="btn btn-danger" data-bs-dismiss="modal">Submit</button></div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                
+                            </form>
+                            <button class="col btn btn-primary" data-bs-toggle="collapse" data-bs-target="#row" aria-controls="row">ANOTHER</button>
+                                <div class="row fade collapse"  id="row">       
+                                <div class="col-10 gy-2">
+                                    <div class="border-5 border-info border bg-success text-danger bg-opacity-50" style="height:100px;">
+
+                                    </div>
+                                </div>
+                                <div class="col gy-2">
+                                    <div class="box">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const form = document.querySelector("form");
+        form.addEventListener("submit",(e)=>{
+            if(!form.checkValidity()){
+                e.preventDefault()
+            }
+            form.classList.add("was-validated")
+            if(form.checkValidity()){
+                e.preventDefault();
+                console.log(form.children[4].children[0].value)
+            }
+        })
+
+    </script>
+</body>
+</html>
