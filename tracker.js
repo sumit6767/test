@@ -1,10 +1,13 @@
 const amount = document.getElementById("number")
 const description = document.getElementById("description")
 const category = document.getElementById("category")
+const finalsubmit = document.getElementById("modalsubmit")
 const submit = document.getElementById("submit")
 const table = document.querySelector(".table")
 let i = 0;
 // function to add expenses in table
+document.cookie = "name=sumit; expires"+new Date(2025,12,12);
+document.cookie = "lastname=vishwakarma"
 function showdata()
 {
    const tr = document.createElement("tr");
@@ -20,7 +23,7 @@ function addExpense(e){
    e.preventDefault();
    
   
-   axios.post("https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses",{
+   axios.post("https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses",{
     amount:amount.value,
     description:description.value,
     category:category.value,
@@ -40,7 +43,7 @@ function deleteExpense(e){
         let text = e.target.parentElement.parentElement.children[0].textContent+"";
         localStorage.removeItem(text)
         const id = response[+text - 1]._id;
-        axios.delete(`https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses/${id}`)
+        axios.delete(`https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses/${id}`)
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
         e.target.parentElement.parentElement.remove();
@@ -65,7 +68,7 @@ function editExpense(e){
             description: (id.description)+"",
             category: (id.category)+"",
         }
-        axios.put(`https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses/${id._id}`,obj)
+        axios.put(`https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses/${id._id}`,obj)
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
           localStorage.setItem(text,JSON.stringify(obj))
@@ -82,7 +85,7 @@ function editExpense(e){
             description: amountNo+"",
             category: (id.category)+"",
         }
-        axios.put(`https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses/${id._id}`,obj)
+        axios.put(`https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses/${id._id}`,obj)
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
           localStorage.setItem(text,JSON.stringify(obj))
@@ -99,7 +102,7 @@ function editExpense(e){
             description: (id.description)+"",
             category: amountNo+"",
         }
-        axios.put(`https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses/${id._id}`,obj)
+        axios.put(`https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses/${id._id}`,obj)
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
           localStorage.setItem(text,JSON.stringify(obj))
@@ -127,7 +130,7 @@ function editExpense(e){
 // }
 
 // this.addEventListener("DOMContentLoaded",(e)=>{
-axios.get("https://crudcrud.com/api/fa42edc8a7b74128a8efeaaf12864c35/expenses")
+axios.get("https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses")
 .then(res=>showExistingUser(res))
 .catch(error=>{})
 // })
@@ -144,6 +147,9 @@ function showExistingUser(res){
     table.appendChild(tr);    
 }
 }
-submit.addEventListener("click",addExpense);
+finalsubmit.addEventListener("click",addExpense);
+submit.addEventListener("click",(e)=>{
+  e.preventDefault();
+})
 table.addEventListener("click",deleteExpense)
 table.addEventListener("click",editExpense)
