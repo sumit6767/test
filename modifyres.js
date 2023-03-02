@@ -49,13 +49,12 @@ function addOrder(e){
     }
    }
 
-    axios.post("https://crudcrud.com/api/487146af28e34d8a895531419c21017d/orders",config)
+    axios.post("https://crudcrud.com/api/95467058f94c40a7b5b9d74d9096f024/orders",config)
    .then(res=>{
     amount.value = "";
     description.value="";
     category.value="table1";
     showdata(res.data)
-    updateres();
    })
    .catch(err=>{
     console.log(err.message)
@@ -73,7 +72,7 @@ function deleteOrder(e){
         let text = e.target.parentElement.parentElement.children[0].textContent+"";
         const id = response[+text - 1]._id;
         
-        axios.delete(`https://crudcrud.com/api/487146af28e34d8a895531419c21017d/orders/${id}`)
+        axios.delete(`https://crudcrud.com/api/95467058f94c40a7b5b9d74d9096f024/orders/${id}`)
         .then(res=>{ 
                 e.target.parentElement.parentElement.remove();
         })
@@ -105,9 +104,9 @@ function editOrder(e){
             }
         }
 
-        else if(what.toLowerCase() ==="food"){
+        else if(what.toLowerCase() ==="description"){
             let newdescription = prompt("enter new description");
-            e.target.parentElement.parentElement.childNodes[3].textContent = newdescription;
+            e.target.parentElement.parentElement.childNodes[2].textContent = newdescription;
             obj = {
                 [existobj] : {
                 amount : id[existobj].amount,
@@ -126,26 +125,18 @@ function editOrder(e){
         //         }
         //     }
         // }
-        axios.put(`https://crudcrud.com/api/487146af28e34d8a895531419c21017d/orders/${id._id}`,obj)
+        if(obj){
+        axios.put(`https://crudcrud.com/api/95467058f94c40a7b5b9d74d9096f024/orders/${id._id}`,obj)
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
+        }
     }
 }
 
-async function updateres(){
-    try{
-        const res = await axios.get("https://crudcrud.com/api/487146af28e34d8a895531419c21017d/orders");
-        response = res.data;
-    }
-    catch(error)
-    {
-        console.log(error.message)
-    }
-    }
 
 async function showuser(){
 try{
-    const res = await axios.get("https://crudcrud.com/api/487146af28e34d8a895531419c21017d/orders");
+    const res = await axios.get("https://crudcrud.com/api/95467058f94c40a7b5b9d74d9096f024/orders");
     showExistingUser(res)
 }
 catch(error)
@@ -155,7 +146,7 @@ catch(error)
 }
 
 
-let response = []; // to take response of existing user
+let response = null; // to take response of existing user
 function showExistingUser(res){
     
     response = res.data;
@@ -169,3 +160,21 @@ showuser();
 finalsubmit.addEventListener("click",addOrder);
 table.addEventListener("click",deleteOrder)
 table.addEventListener("click",editOrder)
+
+const dom = document.querySelector(".modal-body");
+submit.addEventListener("click",(e)=>{
+    e.preventDefault();
+    if(dom.childNodes){
+        dom.childNodes.forEach((naya)=>{
+            naya.remove()
+        })
+    }
+    const div = document.createElement("div");
+    div.className='bg-danger-subtle rounded-3 text-dark fw-bolder p-3'
+    div.setAttribute("style","font-family: 'Tilt Neon', cursive;")
+    div.innerHTML = `<h2 class="d-flex justify-content-evenly"><span>Table No</span><span>:</span><span>${category.value}</span></h2>
+    <p class="d-flex justify-content-evenly fw-bolder"><span>Amount</span><span>:</span><span>${amount.value}</span></p>
+    <p class="d-flex justify-content-evenly fw-bolder"><span>Description</span><span>:</span><span>${description.value}</span></p`
+    dom.appendChild(div)
+})
+

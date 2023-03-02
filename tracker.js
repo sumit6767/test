@@ -23,7 +23,7 @@ function addExpense(e){
    e.preventDefault();
    
   
-   axios.post("https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses",{
+   axios.post("https://crudcrud.com/api/f9ada3e78a7547dd90a2bf1792b84158/expenses",{
     amount:amount.value,
     description:description.value,
     category:category.value,
@@ -43,7 +43,7 @@ function deleteExpense(e){
         let text = e.target.parentElement.parentElement.children[0].textContent+"";
         localStorage.removeItem(text)
         const id = response[+text - 1]._id;
-        axios.delete(`https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses/${id}`)
+        axios.delete(`https://crudcrud.com/api/f9ada3e78a7547dd90a2bf1792b84158/expenses/${id}`)
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
         e.target.parentElement.parentElement.remove();
@@ -68,7 +68,7 @@ function editExpense(e){
             description: (id.description)+"",
             category: (id.category)+"",
         }
-        axios.put(`https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses/${id._id}`,obj)
+        axios.put(`https://crudcrud.com/api/f9ada3e78a7547dd90a2bf1792b84158/expenses/${id._id}`,obj)
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
           localStorage.setItem(text,JSON.stringify(obj))
@@ -85,7 +85,7 @@ function editExpense(e){
             description: amountNo+"",
             category: (id.category)+"",
         }
-        axios.put(`https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses/${id._id}`,obj)
+        axios.put(`https://crudcrud.com/api/f9ada3e78a7547dd90a2bf1792b84158/expenses/${id._id}`,obj)
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
           localStorage.setItem(text,JSON.stringify(obj))
@@ -102,7 +102,7 @@ function editExpense(e){
             description: (id.description)+"",
             category: amountNo+"",
         }
-        axios.put(`https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses/${id._id}`,obj)
+        axios.put(`https://crudcrud.com/api/f9ada3e78a7547dd90a2bf1792b84158/expenses/${id._id}`,obj)
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
           localStorage.setItem(text,JSON.stringify(obj))
@@ -130,7 +130,7 @@ function editExpense(e){
 // }
 
 // this.addEventListener("DOMContentLoaded",(e)=>{
-axios.get("https://crudcrud.com/api/41cac2c5f123412abe84c8ff40dc6420/expenses")
+axios.get("https://crudcrud.com/api/f9ada3e78a7547dd90a2bf1792b84158/expenses")
 .then(res=>showExistingUser(res))
 .catch(error=>{})
 // })
